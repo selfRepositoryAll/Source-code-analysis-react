@@ -802,16 +802,15 @@ function validateTypeDef(Constructor, typeDef, location) {
 }
 
 function validateMethodOverride(isAlreadyDefined, name) {
-  debugger
   var specPolicy = ReactClassInterface.hasOwnProperty(name) ? ReactClassInterface[name] : null;
-//specPolicy 是每个react自定义的
+
   // Disallow overriding of base class methods unless explicitly allowed.
   if (ReactClassMixin.hasOwnProperty(name)) {
     !(specPolicy === 'OVERRIDE_BASE') ? "development" !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to override `%s` from your class specification. Ensure that your method names do not overlap with React methods.', name) : _prodInvariant('73', name) : void 0;
   }
 
   // Disallow defining methods more than once unless explicitly allowed.
-  if (isAlreadyDefined) { // 一般是false
+  if (isAlreadyDefined) {
     !(specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED') ? "development" !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.', name) : _prodInvariant('74', name) : void 0;
   }
 }
@@ -821,7 +820,6 @@ function validateMethodOverride(isAlreadyDefined, name) {
  * specification keys when building React classes.
  */
 function mixSpecIntoComponent(Constructor, spec) {
-  debugger
   if (!spec) {
     if ("development" !== 'production') {
       var typeofSpec = typeof spec;
@@ -857,13 +855,11 @@ function mixSpecIntoComponent(Constructor, spec) {
     }
 
     var property = spec[name];
-    var isAlreadyDefined = proto.hasOwnProperty(name);//proto是原型 看原型是否定义了一般是false 之前就两个 我看的是之前的
+    var isAlreadyDefined = proto.hasOwnProperty(name);
     validateMethodOverride(isAlreadyDefined, name);
 
     if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
-      //保留规格的钥匙 对每个属性
-      RESERVED_SPEC_KEYS[name](Constructor, property); // 每个对象的属性名 函数执行增加了
-        //在类的本身上增加了私有属性
+      RESERVED_SPEC_KEYS[name](Constructor, property);
     } else {
       // Setup methods on prototype:
       // The following member methods should not be automatically bound:
@@ -877,7 +873,7 @@ function mixSpecIntoComponent(Constructor, spec) {
         autoBindPairs.push(name, property);
         proto[name] = property;
       } else {
-        if (isAlreadyDefined) {//这个一般不会去执行 proto一般只存在两个
+        if (isAlreadyDefined) {
           var specPolicy = ReactClassInterface[name];
 
           // These cases should already be caught by validateMethodOverride.
@@ -896,8 +892,6 @@ function mixSpecIntoComponent(Constructor, spec) {
             // Add verbose displayName to the function, which helps when looking
             // at profiling tools.
             if (typeof property === 'function' && spec.displayName) {
-              // 讲spec的也就是那个对象放在 这个类的原型上是共有的属性和方法
-                // 这个类
               proto[name].displayName = spec.displayName + '_' + name;
             }
           }
@@ -1084,7 +1078,6 @@ var ReactClass = {
    * @public
    */
   createClass: function (spec) {
-    debugger
     // To keep our warnings more understandable, we'll use a little hack here to
     // ensure that Constructor.name !== 'Constructor'. This makes sure we don't
     // unnecessarily identify a class without displayName as 'Constructor'.
@@ -1095,15 +1088,19 @@ var ReactClass = {
       if ("development" !== 'production') {
         "development" !== 'production' ? warning(this instanceof Constructor, 'Something is calling a React component directly. Use a factory or ' + 'JSX instead. See: https://fb.me/react-legacyfactory') : void 0;
       }
+
       // Wire up auto-binding
       if (this.__reactAutoBindPairs.length) {
         bindAutoBindMethods(this);
       }
+
       this.props = props;
       this.context = context;
       this.refs = emptyObject;
       this.updater = updater || ReactNoopUpdateQueue;
+
       this.state = null;
+
       // ReactClasses doesn't have constructors. Instead, they use the
       // getInitialState and componentWillMount methods for initialization.
 
@@ -1120,11 +1117,10 @@ var ReactClass = {
 
       this.state = initialState;
     });
-    //Constructor的原型是 ReactClassComponent
     Constructor.prototype = new ReactClassComponent();
-    Constructor.prototype.constructor = Constructor;//创建了一个类
+    Constructor.prototype.constructor = Constructor;
     Constructor.prototype.__reactAutoBindPairs = [];
-      debugger
+
     injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
 
     mixSpecIntoComponent(Constructor, spec);
@@ -1235,11 +1231,9 @@ ReactComponent.prototype.isReactComponent = {};
  * @protected
  */
 ReactComponent.prototype.setState = function (partialState, callback) {
-  debugger
   !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? "development" !== 'production' ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : _prodInvariant('85') : void 0;
   this.updater.enqueueSetState(this, partialState);
   if (callback) {
-    debugger
     this.updater.enqueueCallback(this, callback, 'setState');
   }
 };
@@ -2000,7 +1994,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
  */
 ReactElement.createElement = function (type, config, children) {
   var propName;
-debugger
+
   // Reserved names are extracted
   var props = {};
 

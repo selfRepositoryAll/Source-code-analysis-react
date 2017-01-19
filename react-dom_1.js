@@ -29,8 +29,7 @@
     g.ReactDOM = f(g.React);
   }
 })(function(React) {
-  return (function(f){return f()})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})
-  ( {1:[function(_dereq_,module,exports){
+  return (function(f){return f()})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -5010,8 +5009,6 @@ var ReactCompositeComponent = {
    * @internal
    */
   performUpdateIfNecessary: function (transaction) {
-    debugger
-
     if (this._pendingElement != null) {
       ReactReconciler.receiveComponent(this, this._pendingElement, transaction, this._context);
     } else if (this._pendingStateQueue !== null || this._pendingForceUpdate) {
@@ -5037,7 +5034,6 @@ var ReactCompositeComponent = {
    * @overridable
    */
   updateComponent: function (transaction, prevParentElement, nextParentElement, prevUnmaskedContext, nextUnmaskedContext) {
-    debugger
     var inst = this._instance;
     !(inst != null) ? "development" !== 'production' ? invariant(false, 'Attempted to update component `%s` that has already been unmounted (or failed to mount).', this.getName() || 'ReactCompositeComponent') : _prodInvariant('136', this.getName() || 'ReactCompositeComponent') : void 0;
 
@@ -5150,7 +5146,7 @@ var ReactCompositeComponent = {
    */
   _performComponentUpdate: function (nextElement, nextProps, nextState, nextContext, transaction, unmaskedContext) {
     var _this2 = this;
-debugger
+
     var inst = this._instance;
 
     var hasComponentDidUpdate = Boolean(inst.componentDidUpdate);
@@ -5199,7 +5195,6 @@ debugger
    * @internal
    */
   _updateRenderedComponent: function (transaction, context) {
-    debugger
     var prevComponentInstance = this._renderedComponent;
     var prevRenderedElement = prevComponentInstance._currentElement;
     var nextRenderedElement = this._renderValidatedComponent();
@@ -6199,7 +6194,6 @@ ReactDOMComponent.Mixin = {
    * @overridable
    */
   updateComponent: function (transaction, prevElement, nextElement, context) {
-    debugger
     var lastProps = prevElement.props;
     var nextProps = this._currentElement.props;
 
@@ -6364,7 +6358,6 @@ ReactDOMComponent.Mixin = {
    * @param {object} context
    */
   _updateDOMChildren: function (lastProps, nextProps, transaction, context) {
-    debugger
     var lastContent = CONTENT_TYPES[typeof lastProps.children] ? lastProps.children : null;
     var nextContent = CONTENT_TYPES[typeof nextProps.children] ? nextProps.children : null;
 
@@ -8801,7 +8794,6 @@ var ReactDefaultBatchingStrategy = {
    * and friends are batched such that components aren't updated unnecessarily.
    */
   batchedUpdates: function (callback, a, b, c, d, e) {
-    debugger
     var alreadyBatchingUpdates = ReactDefaultBatchingStrategy.isBatchingUpdates;
 
     ReactDefaultBatchingStrategy.isBatchingUpdates = true;
@@ -9201,7 +9193,6 @@ var ReactEventListener = {
   },
 
   dispatchEvent: function (topLevelType, nativeEvent) {
-    debugger
     if (!ReactEventListener._enabled) {
       return;
     }
@@ -9965,7 +9956,6 @@ var ReactMount = {
    * @return {ReactComponent} nextComponent
    */
   _renderNewRootComponent: function (nextElement, container, shouldReuseMarkup, context) {
-    debugger
     // Various parts of our code (such as ReactCompositeComponent's
     // _renderValidatedComponent) assume that calls to render aren't nested;
     // verify that that's the case.
@@ -10007,7 +9997,6 @@ var ReactMount = {
   },
 
   _renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
-    debugger
     ReactUpdateQueue.validateCallback(callback, 'ReactDOM.render');
     !React.isValidElement(nextElement) ? "development" !== 'production' ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' :
     // Check if it quacks like an element
@@ -10061,8 +10050,6 @@ var ReactMount = {
       }
     }
 
-    // TODO  这边是用来渲染的 下面没看
-      debugger
     var shouldReuseMarkup = containerHasReactMarkup && !prevComponent && !containerHasNonRootReactChild;
     var component = ReactMount._renderNewRootComponent(nextWrappedElement, container, shouldReuseMarkup, nextContext)._renderedComponent.getPublicInstance();
     if (callback) {
@@ -10085,7 +10072,6 @@ var ReactMount = {
    * @return {ReactComponent} Component instance rendered in `container`.
    */
   render: function (nextElement, container, callback) {
-    debugger
     return ReactMount._renderSubtreeIntoContainer(null, nextElement, container, callback);
   },
 
@@ -10511,9 +10497,8 @@ var ReactMultiChild = {
      * @protected
      */
     _updateChildren: function (nextNestedChildrenElements, transaction, context) {
-      // TODO diff算法 nextNestedChildrenElements 里面有我们更改的数据  下一个嵌套的子元素
-      debugger
-      var prevChildren = this._renderedChildren; //这是之前元素的
+        debugger
+      var prevChildren = this._renderedChildren;
       var removedNodes = {};
       var mountImages = [];
       var nextChildren = this._reconcilerUpdateChildren(prevChildren, nextNestedChildrenElements, mountImages, removedNodes, transaction, context);
@@ -12737,7 +12722,6 @@ var ReactUpdateQueue = {
    * @internal
    */
   enqueueSetState: function (publicInstance, partialState) {
-    debugger
     if ("development" !== 'production') {
       ReactInstrumentation.debugTool.onSetState();
       "development" !== 'production' ? warning(partialState != null, 'setState(...): You passed an undefined or null state object; ' + 'instead, use forceUpdate().') : void 0;
@@ -12763,7 +12747,6 @@ var ReactUpdateQueue = {
   },
 
   validateCallback: function (callback, callerName) {
-    debugger
     !(!callback || typeof callback === 'function') ? "development" !== 'production' ? invariant(false, '%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.', callerName, formatUnexpectedArgument(callback)) : _prodInvariant('122', callerName, formatUnexpectedArgument(callback)) : void 0;
   }
 
@@ -12802,7 +12785,6 @@ var asapEnqueued = false;
 var batchingStrategy = null;
 
 function ensureInjected() {
-  debugger
   !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? "development" !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching strategy') : _prodInvariant('123') : void 0;
 }
 
@@ -12867,7 +12849,6 @@ _assign(ReactUpdatesFlushTransaction.prototype, Transaction, {
 PooledClass.addPoolingTo(ReactUpdatesFlushTransaction);
 
 function batchedUpdates(callback, a, b, c, d, e) {
-  debugger
   ensureInjected();
   return batchingStrategy.batchedUpdates(callback, a, b, c, d, e);
 }
@@ -12884,7 +12865,6 @@ function mountOrderComparator(c1, c2) {
 }
 
 function runBatchedUpdates(transaction) {
-  debugger
   var len = transaction.dirtyComponentsLength;
   !(len === dirtyComponents.length) ? "development" !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-components length (%s) to match dirty-components array length (%s).', len, dirtyComponents.length) : _prodInvariant('124', len, dirtyComponents.length) : void 0;
 
@@ -15665,7 +15645,6 @@ module.exports = getEventModifierState;
  */
 
 function getEventTarget(nativeEvent) {
-  debugger
   var target = nativeEvent.target || nativeEvent.srcElement || window;
 
   // Normalize SVG <use> element events #4963

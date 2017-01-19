@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="./react.js"></script>
-    <script src="./react-dom.js"></script>
+    <script src="./react_2.js"></script>
+    <script src="./react-dom_1.js"></script>
     <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
 </head>
 <body>
@@ -18,18 +18,25 @@
             }
         },
         componentWillUpdate(){
+            debugger
             console.log('componentWillUpdate')
         },
         componentDidMount(){
+            debugger
             console.log('componentDidMount')
         },
         handleEvent(){
+            debugger
+            this.setState({
+                age:'rrrr'
+            })
           console.log('handEvent')
         },
         render: function() {
             return (
                 <div>
                     <button onClick={this.handleEvent}>button</button>
+                    <h1>{this.state.age}</h1>
                     <h1>Hello {this.props.name}</h1>;
                 </div>
                 )

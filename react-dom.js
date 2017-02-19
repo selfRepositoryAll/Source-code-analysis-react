@@ -2428,6 +2428,7 @@ var eventQueue = null;
  * @private
  */
 var executeDispatchesAndRelease = function (event, simulated) {
+  debugger
   if (event) {
     EventPluginUtils.executeDispatchesInOrder(event, simulated);
 
@@ -2440,6 +2441,7 @@ var executeDispatchesAndReleaseSimulated = function (e) {
   return executeDispatchesAndRelease(e, true);
 };
 var executeDispatchesAndReleaseTopLevel = function (e) {
+  debugger //执行分派和释放
   return executeDispatchesAndRelease(e, false);
 };
 
@@ -2602,12 +2604,14 @@ var EventPluginHub = {
    * @internal
    */
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
+    debugger //提取事件
     var events;
-    var plugins = EventPluginRegistry.plugins;
+    var plugins = EventPluginRegistry.plugins;//事件插件注册表插件
     for (var i = 0; i < plugins.length; i++) {
       // Not every plugin in the ordering may be loaded at runtime.
       var possiblePlugin = plugins[i];
       if (possiblePlugin) {
+        //可能的插件 根据不同的事件类型类提取不同的事件类型 类型是很多的 比如 click select 等等的事件类型
         var extractedEvents = possiblePlugin.extractEvents(topLevelType, targetInst, nativeEvent, nativeEventTarget);
         if (extractedEvents) {
           events = accumulateInto(events, extractedEvents);
@@ -2625,6 +2629,7 @@ var EventPluginHub = {
    * @internal
    */
   enqueueEvents: function (events) {
+    debugger
     if (events) {
       eventQueue = accumulateInto(eventQueue, events);
     }
@@ -2643,6 +2648,7 @@ var EventPluginHub = {
     if (simulated) {
       forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseSimulated);
     } else {
+      debugger   //执行调度和释放顶级
       forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseTopLevel);
     }
     !!eventQueue ? "development" !== 'production' ? invariant(false, 'processEventQueue(): Additional events were enqueued while processing an event queue. Support for this has not yet been implemented.') : _prodInvariant('95') : void 0;
@@ -2999,7 +3005,9 @@ if ("development" !== 'production') {
  * @param {*} inst Internal component instance
  */
 function executeDispatch(event, simulated, listener, inst) {
+  debugger
   var type = event.type || 'unknown-event';
+  //从密钥中获取当前的点击对象
   event.currentTarget = EventPluginUtils.getNodeFromInstance(inst);
   if (simulated) {
     ReactErrorUtils.invokeGuardedCallbackWithCatch(type, listener, event);
@@ -3012,9 +3020,11 @@ function executeDispatch(event, simulated, listener, inst) {
 /**
  * Standard/simple iteration through an event's collected dispatches.
  */
+//按顺序执行调度
 function executeDispatchesInOrder(event, simulated) {
-  var dispatchListeners = event._dispatchListeners;
-  var dispatchInstances = event._dispatchInstances;
+  debugger //  TODO 这边断了
+  var dispatchListeners = event._dispatchListeners; //兼容器
+  var dispatchInstances = event._dispatchInstances; //实例
   if ("development" !== 'production') {
     validateEventDispatches(event);
   }
@@ -4330,6 +4340,8 @@ var ReactChildReconciler = {
       var prevElement = prevChild && prevChild._currentElement;
       var nextElement = nextChildren[name];
       if (prevChild != null && shouldUpdateReactComponent(prevElement, nextElement)) {
+        debugger
+         // TODO 这边的 prevChild是不是发生了改变
         ReactReconciler.receiveComponent(prevChild, nextElement, transaction, context);
         nextChildren[name] = prevChild;
       } else {
@@ -4527,7 +4539,7 @@ function measureLifeCyclePerf(fn, debugID, timerType) {
 
   ReactInstrumentation.debugTool.onBeginLifeCycleTimer(debugID, timerType);
   try {
-    return fn();
+    return fn();// 我们外面定义的每个函数 做完didmount只有就 要结束这个事情
   } finally {
     ReactInstrumentation.debugTool.onEndLifeCycleTimer(debugID, timerType);
   }
@@ -4949,12 +4961,14 @@ var ReactCompositeComponent = {
    * @private
    */
   _processChildContext: function (currentContext) {
+    //处理上下 组件的名字
     var Component = this._currentElement.type;
-    var inst = this._instance;
+    var inst = this._instance;//实例 就是所有的东西 state props函数 等等
     var childContext;
 
     if (inst.getChildContext) {
       if ("development" !== 'production') {
+        //Instrumentation 反应器
         ReactInstrumentation.debugTool.onBeginProcessingChildContext();
         try {
           childContext = inst.getChildContext();
@@ -4994,6 +5008,7 @@ var ReactCompositeComponent = {
   },
 
   receiveComponent: function (nextElement, transaction, nextContext) {
+    debugger
     var prevElement = this._currentElement;
     var prevContext = this._context;
 
@@ -5202,14 +5217,15 @@ debugger
     debugger
     var prevComponentInstance = this._renderedComponent;
     var prevRenderedElement = prevComponentInstance._currentElement;
-    var nextRenderedElement = this._renderValidatedComponent();
+    var nextRenderedElement = this._renderValidatedComponent();//通过这个获取将要被渲染的元素 之前做过一系列的渲染
 
     var debugID = 0;
     if ("development" !== 'production') {
       debugID = this._debugID;
     }
-
+    // 把之前的元素和现在的元素 进行比较 看看是是否需要更新
     if (shouldUpdateReactComponent(prevRenderedElement, nextRenderedElement)) {
+      debugger
       ReactReconciler.receiveComponent(prevComponentInstance, nextRenderedElement, transaction, this._processChildContext(context));
     } else {
       var oldHostNode = ReactReconciler.getHostNode(prevComponentInstance);
@@ -5246,13 +5262,14 @@ debugger
   /**
    * @protected
    */
+  //渲染没有所有者或上下文的验证组件
   _renderValidatedComponentWithoutOwnerOrContext: function () {
     var inst = this._instance;
     var renderedElement;
 
     if ("development" !== 'production') {
       renderedElement = measureLifeCyclePerf(function () {
-        return inst.render();
+        return inst.render();// 真正的render去执行  _debugID对于一次跟新是根据  _debugID去做的
       }, this._debugID, 'render');
     } else {
       renderedElement = inst.render();
@@ -5278,6 +5295,7 @@ debugger
     if ("development" !== 'production' || this._compositeType !== CompositeTypes.StatelessFunctional) {
       ReactCurrentOwner.current = this;
       try {
+        //  renderedElement 这个是已经更新的完的对象 不过还没有去对比刷新
         renderedElement = this._renderValidatedComponentWithoutOwnerOrContext();
       } finally {
         ReactCurrentOwner.current = null;
@@ -6183,8 +6201,8 @@ ReactDOMComponent.Mixin = {
    * @param {object} context
    */
   receiveComponent: function (nextElement, transaction, context) {
-    var prevElement = this._currentElement;
-    this._currentElement = nextElement;
+    var prevElement = this._currentElement;//this ======ReactDomComponent
+    this._currentElement = nextElement;// 这个位置进行了替换 现在要去更新组件
     this.updateComponent(transaction, prevElement, nextElement, context);
   },
 
@@ -6200,8 +6218,8 @@ ReactDOMComponent.Mixin = {
    */
   updateComponent: function (transaction, prevElement, nextElement, context) {
     debugger
-    var lastProps = prevElement.props;
-    var nextProps = this._currentElement.props;
+    var lastProps = prevElement.props; //这是是之前的 原来的children
+    var nextProps = this._currentElement.props;// 上一步已经接受了新的 children
 
     switch (this._tag) {
       case 'input':
@@ -6221,9 +6239,11 @@ ReactDOMComponent.Mixin = {
         nextProps = ReactDOMTextarea.getHostProps(this, nextProps);
         break;
     }
-
+    // 验证是否有效的 props
     assertValidProps(this, nextProps);
-    this._updateDOMProperties(lastProps, nextProps, transaction);
+    // 之前的children 和要更新的children
+    this._updateDOMProperties(lastProps, nextProps, transaction);// 更新属性 这边的逻辑很多 可以继续观看
+      // 更新孩子节点 这边还是不错的
     this._updateDOMChildren(lastProps, nextProps, transaction, context);
 
     switch (this._tag) {
@@ -6298,7 +6318,7 @@ ReactDOMComponent.Mixin = {
       if (!nextProps.hasOwnProperty(propKey) || nextProp === lastProp || nextProp == null && lastProp == null) {
         continue;
       }
-      if (propKey === STYLE) {
+      if (propKey === STYLE) {// 属性除了children之外还有很多其他的东西 比如 style
         if (nextProp) {
           if ("development" !== 'production') {
             checkAndWarnForMutatedStyle(this._previousStyleCopy, this._previousStyle, this);
@@ -6365,6 +6385,7 @@ ReactDOMComponent.Mixin = {
    */
   _updateDOMChildren: function (lastProps, nextProps, transaction, context) {
     debugger
+      // 获取具体的内容
     var lastContent = CONTENT_TYPES[typeof lastProps.children] ? lastProps.children : null;
     var nextContent = CONTENT_TYPES[typeof nextProps.children] ? nextProps.children : null;
 
@@ -6388,8 +6409,10 @@ ReactDOMComponent.Mixin = {
       }
     }
 
-    if (nextContent != null) {
+    if (nextContent != null) {//
       if (lastContent !== nextContent) {
+        //TODO 这是更新内容的最重要的函数 这边要更新内容了
+
         this.updateTextContent('' + nextContent);
         if ("development" !== 'production') {
           setAndValidateContentChildDev.call(this, nextContent);
@@ -6570,6 +6593,7 @@ function uncacheNode(inst) {
  * time the container's child nodes are always cached (until it unmounts).
  */
 function precacheChildNodes(inst, node) {
+  debugger // 预缓存节点
   if (inst._flags & Flags.hasCachedChildNodes) {
     return;
   }
@@ -6603,12 +6627,13 @@ function precacheChildNodes(inst, node) {
  * ReactDOMTextComponent instance ancestor.
  */
 function getClosestInstanceFromNode(node) {
-  if (node[internalInstanceKey]) {
-    return node[internalInstanceKey];
+  if (node[internalInstanceKey]) { //内部实例密钥
+    return node[internalInstanceKey]; //为什么会有内部实例秘钥 这个是一个问题看来之前做过处理
   }
-
+  /*下面是我们缓存过的 东西*/
   // Walk up the tree until we find an ancestor whose instance we have cached.
-  var parents = [];
+  var parents = []; // 获取容器之后 没有密钥  所以一直 找到
+    //parents = [div#example, body, html, document]
   while (!node[internalInstanceKey]) {
     parents.push(node);
     if (node.parentNode) {
@@ -6624,7 +6649,7 @@ function getClosestInstanceFromNode(node) {
   var inst;
   for (; node && (inst = node[internalInstanceKey]); node = parents.pop()) {
     closest = inst;
-    if (parents.length) {
+    if (parents.length) {// 执行三次 document html div 没有密钥 也要去执行 预缓存一些东西
       precacheChildNodes(inst, node);
     }
   }
@@ -8412,6 +8437,7 @@ var hooks = [];
 var didHookThrowForEvent = {};
 
 function callHook(event, fn, context, arg1, arg2, arg3, arg4, arg5) {
+  debugger
   try {
     fn.call(context, arg1, arg2, arg3, arg4, arg5);
   } catch (e) {
@@ -8421,11 +8447,12 @@ function callHook(event, fn, context, arg1, arg2, arg3, arg4, arg5) {
 }
 
 function emitEvent(event, arg1, arg2, arg3, arg4, arg5) {
+  debugger //setState
   for (var i = 0; i < hooks.length; i++) {
     var hook = hooks[i];
-    var fn = hook[event];
-    if (fn) {
-      callHook(event, fn, hook, arg1, arg2, arg3, arg4, arg5);
+    var fn = hook[event]; //根据事件类型 对用不同的函数 我们这次是setState就对应对应的函数
+    if (fn) { // 组件更新这边有很多的逻辑 处理 很多很多 TODO 以后可以慢慢研究
+      callHook(event, fn, hook, arg1, arg2, arg3, arg4, arg5); //willUpdate是没有钩子的 就几个钩子 其实不多
     }
   }
 }
@@ -8493,6 +8520,7 @@ function resetMeasurements() {
 }
 
 function checkDebugID(debugID) {
+  // debugID一定是单个值 为什么还要这么才做 难道有其他的
   var allowRoot = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
   if (allowRoot && debugID === 0) {
@@ -8622,6 +8650,7 @@ function markEnd(debugID, markType) {
 
 var ReactDebugTool = {
   addHook: function (hook) {
+    debugger
     hooks.push(hook);
   },
   removeHook: function (hook) {
@@ -8711,7 +8740,7 @@ var ReactDebugTool = {
     emitEvent('onMountComponent', debugID);
   },
   onBeforeUpdateComponent: function (debugID, element) {
-    checkDebugID(debugID);
+    checkDebugID(debugID); //这次的debugID 是2 不知道组件多了的话是不是不一样
     emitEvent('onBeforeUpdateComponent', debugID, element);
     markBegin(debugID, 'update');
   },
@@ -8800,16 +8829,18 @@ var ReactDefaultBatchingStrategy = {
    * Call the provided function in a context within which calls to `setState`
    * and friends are batched such that components aren't updated unnecessarily.
    */
+  //批量更新
   batchedUpdates: function (callback, a, b, c, d, e) {
     debugger
     var alreadyBatchingUpdates = ReactDefaultBatchingStrategy.isBatchingUpdates;
-
+   //是批处理更新
     ReactDefaultBatchingStrategy.isBatchingUpdates = true;
 
     // The code is written this way to avoid extra allocations
     if (alreadyBatchingUpdates) {
       return callback(a, b, c, d, e);
     } else {
+      //事务执行
       return transaction.perform(callback, null, a, b, c, d, e);
     }
   }
@@ -8976,6 +9007,7 @@ var caughtError = null;
  * @param {*} a First argument
  * @param {*} b Second argument
  */
+// 调用守卫的回调
 function invokeGuardedCallback(name, func, a) {
   try {
     func(a);
@@ -9016,13 +9048,15 @@ if ("development" !== 'production') {
   if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
     var fakeNode = document.createElement('react');
     ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
+      debugger  //调用Guarded回调
       var boundFunc = func.bind(null, a);
       var evtType = 'react-' + name;
       fakeNode.addEventListener(evtType, boundFunc, false);
+      // 借用原生的 时间
       var evt = document.createEvent('Event');
       // $FlowFixMe https://github.com/facebook/flow/issues/2336
       evt.initEvent(evtType, false, false);
-      fakeNode.dispatchEvent(evt);
+      fakeNode.dispatchEvent(evt);// 这边dispatch 就会执行callback
       fakeNode.removeEventListener(evtType, boundFunc, false);
     };
   }
@@ -9043,9 +9077,11 @@ module.exports = ReactErrorUtils;
 'use strict';
 
 var EventPluginHub = _dereq_(17);
-
+//在批处理中运行事件队列
 function runEventQueueInBatch(events) {
+  debugger // 入队事件类型
   EventPluginHub.enqueueEvents(events);
+  //进程事件队列
   EventPluginHub.processEventQueue(false);
 }
 
@@ -9056,7 +9092,9 @@ var ReactEventEmitterMixin = {
    * opportunity to create `ReactEvent`s to be dispatched.
    */
   handleTopLevel: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
+    debugger
     var events = EventPluginHub.extractEvents(topLevelType, targetInst, nativeEvent, nativeEventTarget);
+   // 根据topLevelType 提取事件类型
     runEventQueueInBatch(events);
   }
 };
@@ -9092,14 +9130,15 @@ var getUnboundedScrollPosition = _dereq_(147);
  * other). If React trees are not nested, returns null.
  */
 function findParent(inst) {
+  debugger
   // TODO: It may be a good idea to cache this to prevent unnecessary DOM
   // traversal, but caching is difficult to do correctly without using a
   // mutation observer to listen for all DOM changes.
-  while (inst._hostParent) {
+  while (inst._hostParent) { // 一直会找最上层
     inst = inst._hostParent;
   }
   var rootNode = ReactDOMComponentTree.getNodeFromInstance(inst);
-  var container = rootNode.parentNode;
+  var container = rootNode.parentNode;// 获取这个容器
   return ReactDOMComponentTree.getClosestInstanceFromNode(container);
 }
 
@@ -9119,14 +9158,16 @@ _assign(TopLevelCallbackBookKeeping.prototype, {
 PooledClass.addPoolingTo(TopLevelCallbackBookKeeping, PooledClass.twoArgumentPooler);
 
 function handleTopLevelImpl(bookKeeping) {
+  debugger //nativeEvent是事件源
   var nativeEventTarget = getEventTarget(bookKeeping.nativeEvent);
+  // 获取这个事件源 // 获取事件源的秘钥 之前是否有过缓存
   var targetInst = ReactDOMComponentTree.getClosestInstanceFromNode(nativeEventTarget);
-
+    //从节点获取最近的实例
   // Loop through the hierarchy, in case there's any nested components.
   // It's important that we build the array of ancestors before calling any
   // event handlers, because event handlers can modify the DOM, leading to
   // inconsistencies with ReactMount's node cache. See #1105.
-  var ancestor = targetInst;
+  var ancestor = targetInst; //祖先
   do {
     bookKeeping.ancestors.push(ancestor);
     ancestor = ancestor && findParent(ancestor);
@@ -9210,6 +9251,7 @@ var ReactEventListener = {
     try {
       // Event queue being processed in the same cycle allows
       // `preventDefault`.
+        // 批量更新
       ReactUpdates.batchedUpdates(handleTopLevelImpl, bookKeeping);
     } finally {
       TopLevelCallbackBookKeeping.release(bookKeeping);
@@ -9534,6 +9576,7 @@ var ReactInstanceMap = {
   },
 
   get: function (key) {
+    //包装器 wrapper 获取react内部的实例
     return key._reactInternalInstance;
   },
 
@@ -10024,7 +10067,7 @@ var ReactMount = {
     } else {
       nextContext = emptyObject;
     }
-
+   //getTopLevelWrapperInContainer 得到顶层的容器
     var prevComponent = getTopLevelWrapperInContainer(container);
 
     if (prevComponent) {
@@ -10403,13 +10446,16 @@ var ReactMultiChild = {
       var selfDebugID = 0;
       if ("development" !== 'production') {
         selfDebugID = getDebugID(this);
-        if (this._currentElement) {
+        if (this._currentElement) {// 这个大的组件消失的话 会直接走下面的
           try {
-            ReactCurrentOwner.current = this._currentElement._owner;
-            nextChildren = flattenChildren(nextNestedChildrenElements, selfDebugID);
+            //TODO 这边是如何产生的还需要继续研究一下
+            ReactCurrentOwner.current = this._currentElement._owner; //创建这个元素的时候有自己的 包装了 一遍
+            // 扁平孩子
+              nextChildren = flattenChildren(nextNestedChildrenElements, selfDebugID);
           } finally {
             ReactCurrentOwner.current = null;
           }
+          //prevChildren 是组件
           ReactChildReconciler.updateChildren(prevChildren, nextChildren, mountImages, removedNodes, transaction, this, this._hostContainerInfo, context, selfDebugID);
           return nextChildren;
         }
@@ -10513,9 +10559,13 @@ var ReactMultiChild = {
     _updateChildren: function (nextNestedChildrenElements, transaction, context) {
       // TODO diff算法 nextNestedChildrenElements 里面有我们更改的数据  下一个嵌套的子元素
       debugger
-      var prevChildren = this._renderedChildren; //这是之前元素的
+        // 走到这里我来说明一下这个 this 也就是 reactDomComponent 有两个 一个是
+        //_currentElement  里面存放着 render执行的产生的createElement 这是第一步
+        // _renderedChildren 这个时候还是更新之前的组件的内容 但是 _currentElement已经是更新之后元素了
+      var prevChildren = this._renderedChildren; //这是之前元素的 这是孩子 我明白了 div是最外层的现在要更新里面的孩子
       var removedNodes = {};
       var mountImages = [];
+      // 调解员更新孩子
       var nextChildren = this._reconcilerUpdateChildren(prevChildren, nextNestedChildrenElements, mountImages, removedNodes, transaction, context);
       if (!nextChildren && !prevChildren) {
         return;
@@ -11606,8 +11656,10 @@ var ReactReconciler = {
    * @internal
    */
   receiveComponent: function (internalInstance, nextElement, transaction, context) {
+    // 之前被渲染的是内部实例 的当前的元素   internalInstance内部的实例  nextElement 只是元素两者是不一样的
     var prevElement = internalInstance._currentElement;
-
+    //internalInstance._currentElement; 存放通过react createElement
+    //对象 的地址是不相同的
     if (nextElement === prevElement && context === internalInstance._context) {
       // Since elements are immutable after the owner is rendered,
       // we can do a cheap identity compare here to determine if this is a
@@ -11623,17 +11675,18 @@ var ReactReconciler = {
     }
 
     if ("development" !== 'production') {
-      if (internalInstance._debugID !== 0) {
+      if (internalInstance._debugID !== 0) { // _debugID =======2
+          // 我感觉是传入 _debugID 找到内部的实例去渲染
         ReactInstrumentation.debugTool.onBeforeUpdateComponent(internalInstance._debugID, nextElement);
       }
     }
-
+    // 明显的能看出 这个位置是更新 ref的
     var refsChanged = ReactRef.shouldUpdateRefs(prevElement, nextElement);
 
-    if (refsChanged) {
+    if (refsChanged) {// 内部的实例 没有发生变化 TODO 未做
       ReactRef.detachRefs(internalInstance, prevElement);
     }
-
+      // 内部的实例去接受组件同时更新组件
     internalInstance.receiveComponent(nextElement, transaction, context);
 
     if (refsChanged && internalInstance._currentElement && internalInstance._currentElement.ref != null) {
@@ -12090,6 +12143,7 @@ var ReactShallowRenderer = function () {
   };
 
   ReactShallowRenderer.prototype.render = function render(element, context) {
+
     // Ensure we've done the default injections. This might not be true in the
     // case of a simple test that only requires React and the TestUtils in
     // conjunction with an inline-requires transform.
@@ -12566,6 +12620,7 @@ var invariant = _dereq_(150);
 var warning = _dereq_(157);
 
 function enqueueUpdate(internalInstance) {
+  debugger
   ReactUpdates.enqueueUpdate(internalInstance);
 }
 
@@ -12583,6 +12638,7 @@ function formatUnexpectedArgument(arg) {
 }
 
 function getInternalInstanceReadyForUpdate(publicInstance, callerName) {
+  //ReactInstanceMap 实例对象
   var internalInstance = ReactInstanceMap.get(publicInstance);
   if (!internalInstance) {
     if ("development" !== 'production') {
@@ -12735,24 +12791,26 @@ var ReactUpdateQueue = {
    * @param {ReactClass} publicInstance The instance that should rerender.
    * @param {object} partialState Next partial state to be merged with state.
    * @internal
-   */
+   *///公共实例  部分状态
   enqueueSetState: function (publicInstance, partialState) {
     debugger
     if ("development" !== 'production') {
+      //反应仪器 调试工具
       ReactInstrumentation.debugTool.onSetState();
       "development" !== 'production' ? warning(partialState != null, 'setState(...): You passed an undefined or null state object; ' + 'instead, use forceUpdate().') : void 0;
     }
-
+    console.log('======================================================================================================================================================================')
+//获取内部实例准备更新
     var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'setState');
 
     if (!internalInstance) {
       return;
     }
-
+      //等待状态队列
     var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);
-    queue.push(partialState);
-
-    enqueueUpdate(internalInstance);
+    queue.push(partialState);//把要跟新的状态放在数组中
+    enqueueUpdate(internalInstance);// 把内部实例进行入队更行
+      // 做的东西很简单
   },
 
   enqueueElementInternal: function (internalInstance, nextElement, nextContext) {
@@ -12802,7 +12860,8 @@ var asapEnqueued = false;
 var batchingStrategy = null;
 
 function ensureInjected() {
-  debugger
+    //确保注入
+  debugger                                     //批处理策略
   !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? "development" !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching strategy') : _prodInvariant('123') : void 0;
 }
 
@@ -12964,20 +13023,21 @@ var flushBatchedUpdates = function () {
  * list of functions which will be executed once the rerender occurs.
  */
 function enqueueUpdate(component) {
+  //
   ensureInjected();
-
+   //反应复合组件
   // Various parts of our code (such as ReactCompositeComponent's
-  // _renderValidatedComponent) assume that calls to render aren't nested;
+  // _renderValidatedComponent) assume that calls to render aren't nested; 嵌套
   // verify that that's the case. (This is called by each top-level update
   // function, like setState, forceUpdate, etc.; creation and
   // destruction of top-level components is guarded in ReactMount.)
-
+ //批处理策略 是批处理更新
   if (!batchingStrategy.isBatchingUpdates) {
     batchingStrategy.batchedUpdates(enqueueUpdate, component);
     return;
   }
 
-  dirtyComponents.push(component);
+  dirtyComponents.push(component);// 这个组件 里面函数 所有的信息
   if (component._updateBatchNumber == null) {
     component._updateBatchNumber = updateBatchNumber + 1;
   }
@@ -13613,17 +13673,18 @@ function getDictionaryKey(inst) {
 function isInteractive(tag) {
   return tag === 'button' || tag === 'input' || tag === 'select' || tag === 'textarea';
 }
-
+//简单事件插件
 var SimpleEventPlugin = {
 
   eventTypes: eventTypes,
-
+// 提取事件
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
+    debugger
     var dispatchConfig = topLevelEventsToDispatchConfig[topLevelType];
     if (!dispatchConfig) {
       return null;
     }
-    var EventConstructor;
+    var EventConstructor; //EventConstructor 事件构造器
     switch (topLevelType) {
       case 'topAbort':
       case 'topCanPlay':
@@ -13728,6 +13789,7 @@ var SimpleEventPlugin = {
         break;
     }
     !EventConstructor ? "development" !== 'production' ? invariant(false, 'SimpleEventPlugin: Unhandled event type, `%s`.', topLevelType) : _prodInvariant('86', topLevelType) : void 0;
+    //累积两相分配
     var event = EventConstructor.getPooled(dispatchConfig, targetInst, nativeEvent, nativeEventTarget);
     EventPropagators.accumulateTwoPhaseDispatches(event);
     return event;
@@ -14741,6 +14803,7 @@ var TransactionImpl = {
       // close -- if it's still set to true in the finally block, it means
       // one of these calls threw.
       errorThrown = true;
+      //初始化所有
       this.initializeAll(0);
       ret = method.call(scope, a, b, c, d, e, f);
       errorThrown = false;
@@ -14765,6 +14828,7 @@ var TransactionImpl = {
   },
 
   initializeAll: function (startIndex) {
+    debugger
     var transactionWrappers = this.transactionWrappers;
     for (var i = startIndex; i < transactionWrappers.length; i++) {
       var wrapper = transactionWrappers[i];
@@ -14773,6 +14837,7 @@ var TransactionImpl = {
         // OBSERVED_ERROR state before overwriting it with the real return value
         // of initialize -- if it's still set to OBSERVED_ERROR in the finally
         // block, it means wrapper.initialize threw.
+          //事务封装
         this.wrapperInitData[i] = OBSERVED_ERROR;
         this.wrapperInitData[i] = wrapper.initialize ? wrapper.initialize.call(this) : null;
       } finally {
@@ -14886,12 +14951,12 @@ var invariant = _dereq_(150);
  */
 
 function accumulateInto(current, next) {
+    //accumulateInto 积累入
   !(next != null) ? "development" !== 'production' ? invariant(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : _prodInvariant('30') : void 0;
 
   if (current == null) {
-    return next;
+    return next; //返回下一个代理事件吗？
   }
-
   // Both are not empty. Warning: Never call x.concat(y) when you are not
   // certain that x is an Array (x could be a string with concat method).
   if (Array.isArray(current)) {
@@ -15406,6 +15471,7 @@ function flattenChildren(children, selfDebugID) {
   var result = {};
 
   if ("development" !== 'production') {
+    // 遍历孩子节点
     traverseAllChildren(children, function (traverseContext, child, name) {
       return flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID);
     }, result);
@@ -15440,6 +15506,7 @@ module.exports = flattenChildren;
  */
 
 function forEachAccumulated(arr, cb, scope) {
+  debugger
   if (Array.isArray(arr)) {
     arr.forEach(cb, scope);
   } else if (arr) {
@@ -15666,15 +15733,16 @@ module.exports = getEventModifierState;
 
 function getEventTarget(nativeEvent) {
   debugger
+    // 是google 浏览器还是ie下
   var target = nativeEvent.target || nativeEvent.srcElement || window;
-
   // Normalize SVG <use> element events #4963
-  if (target.correspondingUseElement) {
+  if (target.correspondingUseElement) { // 处理svg的标签
     target = target.correspondingUseElement;
   }
 
   // Safari may fire events on text nodes (Node.TEXT_NODE is 3).
   // @see http://www.quirksmode.org/js/events_properties.html
+    // 不是文本 不是标签就需要
   return target.nodeType === 3 ? target.parentNode : target;
 }
 
@@ -16428,8 +16496,9 @@ var setTextContent = function (node, text) {
   if (text) {
     var firstChild = node.firstChild;
 
-    if (firstChild && firstChild === node.lastChild && firstChild.nodeType === 3) {
-      firstChild.nodeValue = text;
+    if (firstChild && firstChild === node.lastChild && firstChild.nodeType === 3) {// 更新的是文本并且只有一个
+        // 一般一个标签肯定就一个文本内容 nodetype 是3
+      firstChild.nodeValue = text; // 就是这个代码 跟新了内容
       return;
     }
   }
@@ -16486,6 +16555,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
   if (prevType === 'string' || prevType === 'number') {
     return nextType === 'string' || nextType === 'number';
   } else {
+    // 这边有对key的处理 因为每个组件最好有 key 这个是属性
     return nextType === 'object' && prevElement.type === nextElement.type && prevElement.key === nextElement.key;
   }
 }
@@ -16572,18 +16642,20 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
     // If it's the only child, treat the name as if it was wrapped in an array
     // so that it's consistent if the number of children grows.
     nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
+    //这边是没有孩子节点就会回1 但是
     return 1;
   }
 
   var child;
   var nextName;
-  var subtreeCount = 0; // Count of children found in the current subtree.
+  var subtreeCount = 0; // Count of children found in the current subtree. // 在当前子树中找到的子节点数
   var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
 
   if (Array.isArray(children)) {
     for (var i = 0; i < children.length; i++) {
       child = children[i];
       nextName = nextNamePrefix + getComponentKey(child, i);
+      // 如果还有孩子节点会继续往下进行 subtreeCount会不断的增加
       subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
     }
   } else {
@@ -16662,7 +16734,7 @@ function traverseAllChildren(children, callback, traverseContext) {
   if (children == null) {
     return 0;
   }
-
+// TODO $$$$$这边是非常重要的 明天再看
   return traverseAllChildrenImpl(children, '', callback, traverseContext);
 }
 

@@ -748,7 +748,7 @@ var ReactClassInterface = {
  */
 var RESERVED_SPEC_KEYS = {
   displayName: function (Constructor, displayName) {
-    Constructor.displayName = displayName;
+    Constructor.displayName = displayName; //让 类的静态属性 不会继承
   },
   mixins: function (Constructor, mixins) {
     if (mixins) {
@@ -835,9 +835,9 @@ function mixSpecIntoComponent(Constructor, spec) {
 
   !(typeof spec !== 'function') ? "development" !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to use a component class or function as a mixin. Instead, just use a regular object.') : _prodInvariant('75') : void 0;
   !!ReactElement.isValidElement(spec) ? "development" !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to use a component as a mixin. Instead, just use a regular object.') : _prodInvariant('76') : void 0;
-
+// 现在而言这个原型上 就两个constructor  和__reactAutoBindPairs
   var proto = Constructor.prototype;
-  var autoBindPairs = proto.__reactAutoBindPairs;
+  var autoBindPairs = proto.__reactAutoBindPairs;//[]
 
   // By handling mixins before any other properties, we ensure the same
   // chaining order is applied to methods with DEFINE_MANY policy, whether
@@ -858,6 +858,7 @@ function mixSpecIntoComponent(Constructor, spec) {
 
     var property = spec[name];
     var isAlreadyDefined = proto.hasOwnProperty(name);//proto是原型 看原型是否定义了一般是false 之前就两个 我看的是之前的
+      // react 自己定义了一些方法 看看是否被重写吗
     validateMethodOverride(isAlreadyDefined, name);
 
     if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
@@ -1120,13 +1121,14 @@ var ReactClass = {
 
       this.state = initialState;
     });
-    //Constructor的原型是 ReactClassComponent
+    //Constructor的原型是 ReactClassComponent 原型继承 共有和私有的方法全部放在共有上
     Constructor.prototype = new ReactClassComponent();
     Constructor.prototype.constructor = Constructor;//创建了一个类
     Constructor.prototype.__reactAutoBindPairs = [];
       debugger
     injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
-
+      /*=================特别重要===================*/
+      //TODO 这个函数特别重要 讲传入的对象放在 变成reactclasscomponent 的私有属性
     mixSpecIntoComponent(Constructor, spec);
 
     // Initialize the defaultProps property after all mixins have been merged.
@@ -1169,7 +1171,6 @@ var ReactClass = {
       injectedMixins.push(mixin);
     }
   }
-
 };
 
 module.exports = ReactClass;
@@ -1358,9 +1359,11 @@ if (canUseCollections) {
   var rootIDSet = new Set();
 
   setItem = function (id, item) {
+    // 这是一个对象我们 每个组件设置了 id 然后跟新的时候 获取这个组件
     itemMap.set(id, item);
   };
   getItem = function (id) {
+    // 这是es6的数组结构 我们获取得到
     return itemMap.get(id);
   };
   removeItem = function (id) {
@@ -1500,6 +1503,7 @@ var ReactComponentTreeHook = {
       // In this case, ignore the element.
       return;
     }
+    // 通过_debugID 从对象里面获取之后 将里面的element 替换成最新的
     item.element = element;
   },
   onMountComponent: function (id) {
@@ -1958,6 +1962,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
     // the validation flag non-enumerable (where possible, which should
     // include every environment we run tests in), so the test framework
     // ignores it.
+    /*开始对下面的进行赋值和操作*/
     if (canDefineProperty) {
       Object.defineProperty(element._store, 'validated', {
         configurable: false,
@@ -1985,7 +1990,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
       element._self = self;
       element._source = source;
     }
-    if (Object.freeze) {
+    if (Object.freeze) {// 最后冻结props 和这个元素以后不能修改
       Object.freeze(element.props);
       Object.freeze(element);
     }
@@ -1998,8 +2003,8 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
  * Create and return a new ReactElement of the given type.
  * See https://facebook.github.io/react/docs/top-level-api.html#react.createelement
  */
-ReactElement.createElement = function (type, config, children) {
-  var propName;
+ReactElement.createElement = function (type, config, children) {//children 就是标签内部的内容
+  var propName;  // config 是这个标签的一些东西 ref 和key等等 还有一些私有的属性
 debugger
   // Reserved names are extracted
   var props = {};
@@ -2029,10 +2034,11 @@ debugger
 
   // Children can be more than one argument, and those are transferred onto
   // the newly allocated props object.
-  var childrenLength = arguments.length - 2;
-  if (childrenLength === 1) {
+    // 没有children这个属性之后
+  var childrenLength = arguments.length - 2; //TODO 将孩子的节点提高 尝试一下看是如何更新的
+  if (childrenLength === 1) {// 放在私有变量props上 全部的节点
     props.children = children;
-  } else if (childrenLength > 1) {
+  } else if (childrenLength > 1) {// 哈哈 原来children 多个就是有个字 单词就可以了
     var childArray = Array(childrenLength);
     for (var i = 0; i < childrenLength; i++) {
       childArray[i] = arguments[i + 2];
@@ -2041,7 +2047,7 @@ debugger
       if (Object.freeze) {
         Object.freeze(childArray);
       }
-    }
+    }// 没有太多的意思
     props.children = childArray;
   }
 
@@ -2055,7 +2061,7 @@ debugger
     }
   }
   if ("development" !== 'production') {
-    if (key || ref) {
+    if (key || ref) { // 假如如果有key 或者是value是如何处理的
       if (typeof props.$$typeof === 'undefined' || props.$$typeof !== REACT_ELEMENT_TYPE) {
         var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
         if (key) {
@@ -2066,7 +2072,7 @@ debugger
         }
       }
     }
-  }
+  }// 将 所有的东西全部打开 平滑的输入
   return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
 };
 
@@ -2294,11 +2300,11 @@ function validateExplicitKey(element, parentType) {
  * @param {ReactNode} node Statically passed child of any type.
  * @param {*} parentType node's parent's type.
  */
-function validateChildKeys(node, parentType) {
+function validateChildKeys(node, parentType) {// 持续不断的验证孩子节点
   if (typeof node !== 'object') {
     return;
   }
-  if (Array.isArray(node)) {
+  if (Array.isArray(node)) { // 如果是还有嵌套的话继续往下进行
     for (var i = 0; i < node.length; i++) {
       var child = node[i];
       if (ReactElement.isValidElement(child)) {
@@ -2365,7 +2371,7 @@ var ReactElementValidator = {
     }
 
     var element = ReactElement.createElement.apply(this, arguments);
-
+    // 创建一个react的元素
     // The result can be nullish if a mock or a custom function is used.
     // TODO: Drop this when these are no longer allowed as the type argument.
     if (element == null) {
@@ -2378,7 +2384,7 @@ var ReactElementValidator = {
     // (Rendering will throw with a helpful message and as soon as the type is
     // fixed, the key warnings will appear.)
     if (validType) {
-      for (var i = 2; i < arguments.length; i++) {
+      for (var i = 2; i < arguments.length; i++) { // 验证孩子节点是否是 为什么同级是 还有孩子的说法
         validateChildKeys(arguments[i], type);
       }
     }

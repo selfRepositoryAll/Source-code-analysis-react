@@ -4329,6 +4329,7 @@ var ReactChildReconciler = {
       var prevElement = prevChild && prevChild._currentElement;
       var nextElement = nextChildren[name];
       if (prevChild != null && shouldUpdateReactComponent(prevElement, nextElement)) {
+        debugger
         ReactReconciler.receiveComponent(prevChild, nextElement, transaction, context);
         nextChildren[name] = prevChild;
       } else {
@@ -4492,8 +4493,10 @@ var CompositeTypes = {
   StatelessFunctional: 2
 };
 
+debugger
 function StatelessComponent(Component) {}
 StatelessComponent.prototype.render = function () {
+  debugger
   var Component = ReactInstanceMap.get(this)._currentElement.type;
   var element = Component(this.props, this.context, this.updater);
   warnIfInvalidElement(Component, element);
@@ -4517,6 +4520,7 @@ function isPureComponent(Component) {
 
 // Separated into a function to contain deoptimizations caused by try/finally.
 function measureLifeCyclePerf(fn, debugID, timerType) {
+    debugger
   if (debugID === 0) {
     // Top-level wrappers (see ReactMount) and empty components (see
     // ReactDOMEmptyComponent) are invisible to hooks and devtools.
@@ -5075,7 +5079,7 @@ var ReactCompositeComponent = {
     if (!this._pendingForceUpdate) {
       if (inst.shouldComponentUpdate) {
         if ("development" !== 'production') {
-          shouldUpdate = measureLifeCyclePerf(function () {
+          shouldUpdate = measureLifeCyclePerf(function () {//这个就是那个函数吗
             return inst.shouldComponentUpdate(nextProps, nextState, nextContext);
           }, this._debugID, 'shouldComponentUpdate');
         } else {
@@ -6383,6 +6387,7 @@ ReactDOMComponent.Mixin = {
 
     if (nextContent != null) {
       if (lastContent !== nextContent) {
+        debugger
         this.updateTextContent('' + nextContent);
         if ("development" !== 'production') {
           setAndValidateContentChildDev.call(this, nextContent);
@@ -8663,6 +8668,7 @@ var ReactDebugTool = {
     emitEvent('onEndFlush');
   },
   onBeginLifeCycleTimer: function (debugID, timerType) {
+    debugger
     checkDebugID(debugID);
     emitEvent('onBeginLifeCycleTimer', debugID, timerType);
     markBegin(debugID, timerType);
@@ -9006,8 +9012,10 @@ if ("development" !== 'production') {
    * real browser event.
    */
   if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-    var fakeNode = document.createElement('react');
+    var fakeNode = document.createElement('react'); //
+      debugger
     ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
+        debugger
       var boundFunc = func.bind(null, a);
       var evtType = 'react-' + name;
       fakeNode.addEventListener(evtType, boundFunc, false);
@@ -10502,6 +10510,7 @@ var ReactMultiChild = {
       var removedNodes = {};
       var mountImages = [];
       var nextChildren = this._reconcilerUpdateChildren(prevChildren, nextNestedChildrenElements, mountImages, removedNodes, transaction, context);
+        debugger
       if (!nextChildren && !prevChildren) {
         return;
       }
@@ -12075,6 +12084,7 @@ var ReactShallowRenderer = function () {
   };
 
   ReactShallowRenderer.prototype.render = function render(element, context) {
+    debugger
     // Ensure we've done the default injections. This might not be true in the
     // case of a simple test that only requires React and the TestUtils in
     // conjunction with an inline-requires transform.
@@ -12372,6 +12382,7 @@ var ReactTestUtils = {
     mockTagName = mockTagName || module.mockTagName || 'div';
 
     module.prototype.render.mockImplementation(function () {
+      debugger
       return React.createElement(mockTagName, null, this.props.children);
     });
 
@@ -12726,7 +12737,7 @@ var ReactUpdateQueue = {
       ReactInstrumentation.debugTool.onSetState();
       "development" !== 'production' ? warning(partialState != null, 'setState(...): You passed an undefined or null state object; ' + 'instead, use forceUpdate().') : void 0;
     }
-
+    debugger
     var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'setState');
 
     if (!internalInstance) {

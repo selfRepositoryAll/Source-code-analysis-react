@@ -3,46 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="./react_2.js"></script>
+    <script src="./react.js"></script>
     <script src="./react-dom_1.js"></script>
     <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
 </head>
 <body>
+<pre>
+    http://www.cnblogs.com/sunshine-anycall/p/5950650.html
+</pre>
 <div id="example"></div>
 <script type="text/babel">
-
+    var ChildLeft= React.createClass({
+        render(){
+            return(
+                <div>childLeft</div>
+            )
+        }
+    })
+    var ChildRight= React.createClass({
+        render(){
+            return(
+                    <div>childRight</div>
+            )
+        }
+    })
     var HelloMessage = React.createClass({
         getInitialState(){
             return{
-                age:'xxxx'
+                age:'xxxx',
+                flag:true
             }
         },
-        componentWillUpdate(){
-            debugger
+        componentWillUpdate(a,b,c){// 看一下都传了什么参数
+            debugger//
             console.log('componentWillUpdate')
         },
         componentDidMount(){
-            debugger
             console.log('componentDidMount')
         },
         handleEvent(){
-            debugger
             this.setState({
-                age:'rrrr'
-            })
-          console.log('handEvent')
+                flag:false
+            });
+            debugger
         },
-        render: function() {
-            return (
-                <div>
-                    <button onClick={this.handleEvent}>button</button>
-                    <h1>{this.state.age}</h1>
-                    <h1>Hello {this.props.name}</h1>;
+        render: function() {//render 执行的时候 事件就结束了 需要移除 整个事件
+            console.log(this.state.flag)
+            return ( // 执行到render的返回一个对象 这是es6的写法 为什么回到 ReactElement.createElement 里面有待更新
+                <div ref='eee'>
+                    <button style={{background:'red'}} onClick={this.handleEvent}>click</button>
+                    {this.state.flag?(<ChildLeft />):(<ChildRight />)}
                 </div>
                 )
         }
     });
-
     ReactDOM.render(
             <HelloMessage name="John" />,
         document.getElementById('example')
@@ -50,3 +64,11 @@
 </script>
 </body>
 </html>
+<script>
+ /*   讲这个对象全部缓存到 ReactClassComponent的私有属性上
+    <h1>{this.state.age}</h1> 当执行render的时候我们已经 state 更新完成了 同时 创建元素的时候
+    children 就是标签内部的内
+    */
+
+
+</script>

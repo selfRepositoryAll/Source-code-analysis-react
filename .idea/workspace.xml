@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e574b34-5566-4088-ba5b-d92db97c2d26" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react-dom_1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/typescript-compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/diff.xmind" afterPath="$PROJECT_DIR$/diff.xmind" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-dom.js" afterPath="$PROJECT_DIR$/react-dom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react-dom_1.js" afterPath="$PROJECT_DIR$/react-dom_1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react.html" afterPath="$PROJECT_DIR$/react.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react.js" afterPath="$PROJECT_DIR$/react.js" />
     </list>
@@ -24,23 +29,16 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="react" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="react.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="react_2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+            <state relative-caret-position="242">
+              <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -49,8 +47,8 @@
       <file leaf-file-name="react.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="1236" column="19" lean-forward="true" selection-start-line="1236" selection-start-column="19" selection-end-line="1236" selection-end-column="19" />
+            <state relative-caret-position="264">
+              <caret line="3223" column="42" lean-forward="true" selection-start-line="3223" selection-start-column="42" selection-end-line="3223" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -59,23 +57,22 @@
       <file leaf-file-name="react-dom.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-dom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="10531" column="34" lean-forward="true" selection-start-line="10531" selection-start-column="34" selection-end-line="10531" selection-end-column="34" />
+            <state relative-caret-position="154">
+              <caret line="10558" column="19" lean-forward="false" selection-start-line="10558" selection-start-column="4" selection-end-line="10558" selection-end-column="19" />
               <folding>
-                <element signature="e#247#293#0" expanded="false" />
-                <element signature="e#1650#3072#0" expanded="false" />
-                <element signature="e#3778#4084#0" expanded="false" />
-                <element signature="e#5712#6692#0" expanded="false" />
-                <element signature="e#20702#21009#0" expanded="false" />
-                <element signature="e#342912#344355#0" expanded="false" />
-                <element signature="e#345093#345408#0" expanded="false" />
-                <element signature="e#348777#349287#0" expanded="false" />
-                <element signature="e#420204#420926#0" expanded="false" />
-                <element signature="e#421228#429982#0" expanded="false" />
-                <element signature="e#430298#431873#0" expanded="false" />
-                <element signature="e#431902#432248#0" expanded="false" />
-                <element signature="e#434758#443600#0" expanded="false" />
+                <element signature="e#218448#219657#0" expanded="false" />
+                <element signature="e#313388#313498#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="react-dom_1.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-dom_1.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="9745" column="1" lean-forward="true" selection-start-line="9745" selection-start-column="1" selection-end-line="9745" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,42 +82,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ReactUpdateQueue</find>
-      <find>createElement</find>
-      <find>validateCallback</find>
+      <find>ReactCurrentOwner.current</find>
       <find>ReactElement</find>
-      <find>autoBindPairs</find>
-      <find>TODO</find>
-      <find>_renderNewRootComponent</find>
-      <find>ReactBrowserEventEmitter</find>
-      <find>ensureScrollValueMonitoring</find>
-      <find>_updateDOMChildren</find>
+      <find>_renderValidatedComponentWithoutOwnerOrContext</find>
+      <find>this._renderValidatedComponentWithoutOwnerOrContext()</find>
       <find>receiveComponent</find>
+      <find>receiveComponent:</find>
+      <find>====</find>
       <find>_updateRenderedComponent</find>
-      <find>_performComponentUpdate</find>
-      <find>updateComponent</find>
-      <find>performUpdateIfNecessary</find>
-      <find>120:</find>
-      <find>updateChildren</find>
-      <find>batchedUpdates</find>
-      <find>dispatchEvent</find>
-      <find>getEventTarget</find>
-      <find>114:</find>
-      <find>enqueueSetState</find>
-      <find>setState</find>
-      <find>.setState</find>
-      <find>prototype.setState</find>
-      <find>React.prototype.setState</find>
-      <find>_updateChildren</find>
-      <find>nextNestedChildrenElements</find>
-      <find>_reconcilerUpdateChildren</find>
-      <find>ReactComponent.prototype.setState</find>
+      <find>shouldUpdateReactComponent</find>
+      <find>_processChildContext</find>
+      <find>itemMap = new Map()</find>
+      <find>onBeforeUpdateComponent:</find>
+      <find>onBeforeUpdateComponent</find>
+      <find>receiveComponent: function</find>
+      <find>_reconcilerUpdateChildren: function</find>
+      <find>traverseAllChildren</find>
+      <find>traverseAllChildrenImpl</find>
+      <find>ReactReconciler.receiveComponent(prevChild, nextElement, transaction, context);</find>
+      <find>if (nextContent != null) {</find>
+      <find>diff</find>
+      <find>createClass</find>
+      <find>isValidElement</find>
+      <find>spec.hasOwnProperty(MIXINS_KEY)</find>
+      <find>__reactAutoBindPairs</find>
+      <find>Constructor.getDefaultProps</find>
+      <find>_renderSubtreeIntoContainer</find>
+      <find>TopLevelWrapper</find>
+      <find>render: function</find>
+      <find>container</find>
+      <find>算法</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,15 +128,23 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/1.html" />
+        <option value="$PROJECT_DIR$/2.html" />
+        <option value="$PROJECT_DIR$/1.js" />
         <option value="$PROJECT_DIR$/react.js" />
-        <option value="$PROJECT_DIR$/react-dom_1.js" />
         <option value="$PROJECT_DIR$/react-dom.js" />
+        <option value="$PROJECT_DIR$/react-dom_1.js" />
         <option value="$PROJECT_DIR$/react.html" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -148,6 +154,9 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -165,7 +174,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -180,11 +188,11 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
@@ -193,13 +201,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="eu.ydp.idea.ts.spec.generator.settings.spec.template" value="import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';&#10;&#10;describe('$ClassName$', () =&gt; {&#10;  let $ObjName$:$ClassName$;&#10;&#10;  beforeEach(() =&gt; {&#10;    $ObjName$ = new $ClassName$();&#10;  });&#10;&#10;  describe('', () =&gt; {&#10;    it('', () =&gt; {&#10;      // given&#10;&#10;      // when&#10;&#10;      // then&#10;    });&#10;  });&#10;});&#10;" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\源码解析\react" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.1.html">
+  <component name="RunManager" selected="Node.js.1.js">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -259,11 +270,15 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <configuration default="false" name="1.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="1.js" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
     <configuration default="false" name="1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/react/1.html">
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.1.html" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.1.js" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.1.html" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -284,12 +299,24 @@
       <workItem from="1484614784150" duration="35000" />
       <workItem from="1484710467769" duration="2116000" />
       <workItem from="1484722550088" duration="8656000" />
-      <workItem from="1484807161307" duration="8154000" />
+      <workItem from="1484807161307" duration="8715000" />
+      <workItem from="1485080612177" duration="178000" />
+      <workItem from="1485158116452" duration="252000" />
+      <workItem from="1486983681461" duration="90000" />
+      <workItem from="1487034754019" duration="74000" />
+      <workItem from="1487315114371" duration="9503000" />
+      <workItem from="1487325790172" duration="3609000" />
+      <workItem from="1487336877733" duration="3345000" />
+      <workItem from="1487374065982" duration="6407000" />
+      <workItem from="1487415979624" duration="7635000" />
+      <workItem from="1487459633943" duration="7581000" />
+      <workItem from="1487499024895" duration="529000" />
+      <workItem from="1487501067853" duration="1914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22593000" />
+    <option name="totallyTimeSpent" value="64271000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -304,12 +331,13 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19642857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15178572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -330,17 +358,162 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/react.js</url>
-          <line>1086</line>
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/browser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2134">
+          <caret line="97" column="20" lean-forward="false" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2134">
+          <caret line="97" column="20" lean-forward="true" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27192">
+          <caret line="1236" column="19" lean-forward="false" selection-start-line="1236" selection-start-column="19" selection-end-line="1236" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-dom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231682">
+          <caret line="10531" column="34" lean-forward="false" selection-start-line="10531" selection-start-column="34" selection-end-line="10531" selection-end-column="34" />
+          <folding>
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27192">
+          <caret line="1236" column="19" lean-forward="false" selection-start-line="1236" selection-start-column="19" selection-end-line="1236" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-dom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231682">
+          <caret line="10531" column="34" lean-forward="false" selection-start-line="10531" selection-start-column="34" selection-end-line="10531" selection-end-column="34" />
+          <folding>
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23484">
+          <caret line="1236" column="19" lean-forward="true" selection-start-line="1236" selection-start-column="19" selection-end-line="1236" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-dom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200089">
+          <caret line="10531" column="34" lean-forward="true" selection-start-line="10531" selection-start-column="34" selection-end-line="10531" selection-end-column="34" />
+          <folding>
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/react.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -362,19 +535,8 @@
         <state relative-caret-position="221760">
           <caret line="10080" column="0" lean-forward="true" selection-start-line="10080" selection-start-column="0" selection-end-line="10080" selection-end-column="0" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -421,19 +583,8 @@
         <state relative-caret-position="2530">
           <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -466,19 +617,8 @@
         <state relative-caret-position="98912">
           <caret line="4496" column="34" lean-forward="false" selection-start-line="4496" selection-start-column="18" selection-end-line="4496" selection-end-column="34" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -511,19 +651,8 @@
         <state relative-caret-position="98912">
           <caret line="4496" column="34" lean-forward="false" selection-start-line="4496" selection-start-column="18" selection-end-line="4496" selection-end-column="34" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -549,19 +678,8 @@
         <state relative-caret-position="98912">
           <caret line="4496" column="34" lean-forward="false" selection-start-line="4496" selection-start-column="18" selection-end-line="4496" selection-end-column="34" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -573,78 +691,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/react_1.js" />
+    <entry file="file://$PROJECT_DIR$/browser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="97" column="20" lean-forward="true" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
+        <state relative-caret-position="3408">
+          <caret line="94" column="16" lean-forward="false" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CookieManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-dom_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="10499" column="16" lean-forward="false" selection-start-line="10499" selection-start-column="8" selection-end-line="10499" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="-892">
+          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
+        <state relative-caret-position="22">
+          <caret line="19" column="2" lean-forward="false" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-dom_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9745" column="1" lean-forward="true" selection-start-line="9745" selection-start-column="1" selection-end-line="9745" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react-dom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="10531" column="34" lean-forward="true" selection-start-line="10531" selection-start-column="34" selection-end-line="10531" selection-end-column="34" />
+        <state relative-caret-position="154">
+          <caret line="10558" column="19" lean-forward="false" selection-start-line="10558" selection-start-column="4" selection-end-line="10558" selection-end-column="19" />
           <folding>
-            <element signature="e#247#293#0" expanded="false" />
-            <element signature="e#1650#3072#0" expanded="false" />
-            <element signature="e#3778#4084#0" expanded="false" />
-            <element signature="e#5712#6692#0" expanded="false" />
-            <element signature="e#20702#21009#0" expanded="false" />
-            <element signature="e#342912#344355#0" expanded="false" />
-            <element signature="e#345093#345408#0" expanded="false" />
-            <element signature="e#348777#349287#0" expanded="false" />
-            <element signature="e#420204#420926#0" expanded="false" />
-            <element signature="e#421228#429982#0" expanded="false" />
-            <element signature="e#430298#431873#0" expanded="false" />
-            <element signature="e#431902#432248#0" expanded="false" />
-            <element signature="e#434758#443600#0" expanded="false" />
+            <element signature="e#218448#219657#0" expanded="false" />
+            <element signature="e#313388#313498#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="1236" column="19" lean-forward="true" selection-start-line="1236" selection-start-column="19" selection-end-line="1236" selection-end-column="19" />
+        <state relative-caret-position="264">
+          <caret line="3223" column="42" lean-forward="true" selection-start-line="3223" selection-start-column="42" selection-end-line="3223" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+        <state relative-caret-position="242">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
           <folding />
         </state>
       </provider>

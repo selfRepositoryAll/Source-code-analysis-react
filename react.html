@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="./react.js"></script>
-    <script src="./react-dom_1.js"></script>
-    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./react.js"></script>
+  <script src="./react-dom_1.js"></script>
+  <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  <script src="./babel.js"></script>
 </head>
+
 <body>
-<pre>
+  <pre>
     http://www.cnblogs.com/sunshine-anycall/p/5950650.html
 </pre>
-<div id="example"></div>
-<script type="text/babel">
-    var ChildLeft= React.createClass({
-        render(){
-            return(
-                <div>childLeft</div>
-            )
-        }
-    })
-    var ChildRight= React.createClass({
-        render(){
-            return(
-                    <div>childRight</div>
-            )
-        }
-    })
-    var HelloMessage = React.createClass({
-        getInitialState(){
-            return{
-                age:'xxxx',
-                flag:true
-            }
-        },
-        componentWillUpdate(a,b,c){// 看一下都传了什么参数
-            debugger//
-            console.log('componentWillUpdate')
-        },
+  <div id="example"></div>
+  <script type="text/babel">
+    // var ChildLeft= React.createClass({
+    //     render(){
+    //         return(
+    //             <div>childLeft</div>
+    //         )
+    //     }
+    // })
+    // var ChildRight= React.createClass({
+    //     render(){
+    //         return(
+    //                 <div>childRight</div>
+    //         )
+    //     }
+    // })
+    class HelloMessage extends React.Component{
+        constructor(props) {
+            super(props)
+            this.state={
+              age:10
+            } 
+        }        
+        // componentWillUpdate(a,b,c){// 看一下都传了什么参数
+        //     console.log('componentWillUpdate')
+        // }
         componentDidMount(){
             console.log('componentDidMount')
-        },
+        }
         handleEvent(){
             this.setState({
-                flag:false
+                age:11
             });
-            debugger
-        },
-        render: function() {//render 执行的时候 事件就结束了 需要移除 整个事件
-            console.log(this.state.flag)
-            return ( // 执行到render的返回一个对象 这是es6的写法 为什么回到 ReactElement.createElement 里面有待更新
-                <div ref='eee'>
-                    <button style={{background:'red'}} onClick={this.handleEvent}>click</button>
-                    {this.state.flag?(<ChildLeft />):(<ChildRight />)}
-                </div>
-                )
         }
-    });
+        render(){
+            return (
+                <div ref='eee'>
+                  <h1>{this.state.age}</h1>
+                  <button onClick={()=>this.handleEvent()} >button</button>
+                </div>
+            )
+        }
+    }
     ReactDOM.render(
             <HelloMessage name="John" />,
         document.getElementById('example')
     );
 </script>
 </body>
+
 </html>
 <script>
  /*   讲这个对象全部缓存到 ReactClassComponent的私有属性上
